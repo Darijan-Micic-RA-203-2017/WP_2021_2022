@@ -1,7 +1,7 @@
-package model.training;
+package beans.training;
 
-import model.user.User;
-import model.venue.Venue;
+import beans.user.User;
+import beans.venue.Venue;
 
 public class Training {
 	private long id;

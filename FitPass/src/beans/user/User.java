@@ -1,11 +1,11 @@
-package model.user;
+package beans.user;
 
 import java.util.Date;
 import java.util.List;
 
-import model.membership.Membership;
-import model.training.TrainingRecord;
-import model.venue.Venue;
+import beans.membership.Membership;
+import beans.training.TrainingRecord;
+import beans.venue.Venue;
 
 public class User {
 	private long id;

@@ -1,13 +1,13 @@
-package model.membership;
+package beans.venue;
 
-public class MembershipType {
+public class VenueType {
 	private long id;
 	private boolean logicallyDeleted;
 	private String name;
 	
-	public MembershipType() {}
+	public VenueType() {}
 	
-	public MembershipType(long id, boolean logicallyDeleted, String name) {
+	public VenueType(long id, boolean logicallyDeleted, String name) {
 		this.id = id;
 		this.logicallyDeleted = logicallyDeleted;
 		this.name = name;

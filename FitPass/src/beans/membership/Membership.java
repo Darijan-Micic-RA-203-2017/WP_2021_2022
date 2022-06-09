@@ -1,8 +1,8 @@
-package model.membership;
+package beans.membership;
 
 import java.util.Date;
 
-import model.user.User;
+import beans.user.User;
 
 public class Membership {
 	private String id;

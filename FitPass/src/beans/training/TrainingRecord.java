@@ -1,8 +1,8 @@
-package model.training;
+package beans.training;
 
 import java.util.Date;
 
-import model.user.User;
+import beans.user.User;
 
 public class TrainingRecord {
 	private long id;

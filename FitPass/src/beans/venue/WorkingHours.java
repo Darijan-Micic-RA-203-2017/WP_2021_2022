@@ -1,4 +1,4 @@
-package model.venue;
+package beans.venue;
 
 public class WorkingHours {
 	private String openingHours;

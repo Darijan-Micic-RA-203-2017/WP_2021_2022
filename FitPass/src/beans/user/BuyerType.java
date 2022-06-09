@@ -1,4 +1,4 @@
-package model.user;
+package beans.user;
 
 public class BuyerType {
 	private long id;

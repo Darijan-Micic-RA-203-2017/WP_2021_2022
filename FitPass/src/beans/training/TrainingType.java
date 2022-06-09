@@ -1,4 +1,4 @@
-package model.training;
+package beans.training;
 
 public class TrainingType {
 	private long id;

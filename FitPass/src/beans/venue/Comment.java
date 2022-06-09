@@ -1,6 +1,6 @@
-package model.venue;
+package beans.venue;
 
-import model.user.User;
+import beans.user.User;
 
 public class Comment {
 	private long id;

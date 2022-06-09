@@ -1,6 +1,6 @@
-package model.venue;
+package beans.venue;
 
-import model.location.Location;
+import beans.location.Location;
 
 public class Venue {
 	private long id;

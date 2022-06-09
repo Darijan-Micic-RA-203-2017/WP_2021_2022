@@ -1,4 +1,4 @@
-package model.location;
+package beans.location;
 
 public class Location {
 	private long id;
