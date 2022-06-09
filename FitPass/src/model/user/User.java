@@ -9,6 +9,7 @@ import model.venue.Venue;
 
 public class User {
 	private long id;
+	private boolean logicallyDeleted;
 	private String username;
 	private String password;
 	private String firstName;
@@ -25,12 +26,13 @@ public class User {
 	
 	public User() {}
 	
-	public User(long id, String username, String password, String firstName, 
-			String lastName, Gender gender, Date dateOfBirth, UserRole role, 
-			List<TrainingRecord> trainingRecords, Membership membership, 
+	public User(long id, boolean logicallyDeleted, String username, String password, 
+			String firstName, String lastName, Gender gender, Date dateOfBirth, 
+			UserRole role, List<TrainingRecord> trainingRecords, Membership membership, 
 			Venue ownedVenue, List<Venue> visitedVenues, int earnedPoints, 
 			BuyerType buyerType) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -52,6 +54,14 @@ public class User {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public String getUsername() {

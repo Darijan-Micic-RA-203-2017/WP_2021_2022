@@ -2,6 +2,7 @@ package model.location;
 
 public class Address {
 	private long id;
+	private boolean logicallyDeleted;
 	private String street;
 	private String number;
 	private String populatedPlace;
@@ -9,9 +10,10 @@ public class Address {
 	
 	public Address() {}
 	
-	public Address(long id, String street, String number, String populatedPlace, 
-			String postalCode) {
+	public Address(long id, boolean logicallyDeleted, String street, String number, 
+			String populatedPlace, String postalCode) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.street = street;
 		this.number = number;
 		this.populatedPlace = populatedPlace;
@@ -24,6 +26,14 @@ public class Address {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public String getStreet() {

@@ -6,6 +6,7 @@ import model.user.User;
 
 public class Membership {
 	private String id;
+	private boolean logicallyDeleted;
 	private MembershipType type;
 	private Date dateOfPayment;
 	private Date validUntil;
@@ -16,10 +17,11 @@ public class Membership {
 	
 	public Membership() {}
 	
-	public Membership(String id, MembershipType type, Date dateOfPayment, 
-			Date validUntil, int fee, User buyer, MembershipStatus status, 
-			int numberOfTerms) {
+	public Membership(String id, boolean logicallyDeleted, MembershipType type, 
+			Date dateOfPayment, Date validUntil, int fee, User buyer, 
+			MembershipStatus status, int numberOfTerms) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.type = type;
 		this.dateOfPayment = dateOfPayment;
 		this.validUntil = validUntil;
@@ -35,6 +37,14 @@ public class Membership {
 	
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public MembershipType getType() {

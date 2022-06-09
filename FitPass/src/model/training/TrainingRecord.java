@@ -6,6 +6,7 @@ import model.user.User;
 
 public class TrainingRecord {
 	private long id;
+	private boolean logicallyDeleted;
 	private Date dateAndTimeOfApplication;
 	private Training training;
 	private User buyer;
@@ -13,9 +14,10 @@ public class TrainingRecord {
 	
 	public TrainingRecord() {}
 	
-	public TrainingRecord(long id, Date dateAndTimeOfApplication, Training training, 
-			User buyer, User trainer) {
+	public TrainingRecord(long id, boolean logicallyDeleted, 
+			Date dateAndTimeOfApplication, Training training, User buyer, User trainer) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.dateAndTimeOfApplication = dateAndTimeOfApplication;
 		this.training = training;
 		this.buyer = buyer;
@@ -28,6 +30,14 @@ public class TrainingRecord {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public Date getDateAndTimeOfApplication() {

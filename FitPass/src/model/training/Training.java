@@ -5,6 +5,7 @@ import model.venue.Venue;
 
 public class Training {
 	private long id;
+	private boolean logicallyDeleted;
 	private String name;
 	private TrainingType type;
 	private Venue venue;
@@ -15,9 +16,11 @@ public class Training {
 	
 	public Training() {}
 	
-	public Training(long id, String name, TrainingType type, Venue venue, 
-			String duration, User trainer, String description, String imagePath) {
+	public Training(long id, boolean logicallyDeleted, String name, TrainingType type, 
+			Venue venue, String duration, User trainer, String description, 
+			String imagePath) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.name = name;
 		this.type = type;
 		this.venue = venue;
@@ -33,6 +36,14 @@ public class Training {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public String getName() {

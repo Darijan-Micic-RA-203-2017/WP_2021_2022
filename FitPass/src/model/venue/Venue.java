@@ -4,6 +4,7 @@ import model.location.Location;
 
 public class Venue {
 	private long id;
+	private boolean logicallyDeleted;
 	private String name;
 	private VenueType type;
 	private String content;
@@ -15,10 +16,11 @@ public class Venue {
 	
 	public Venue() {}
 	
-	public Venue(long id, String name, VenueType type, String content, 
-			VenueStatus status, Location location, String logoPath, 
+	public Venue(long id, boolean logicallyDeleted, String name, VenueType type, 
+			String content, VenueStatus status, Location location, String logoPath, 
 			double averageGrade, WorkingHours workingHours) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.name = name;
 		this.type = type;
 		this.content = content;
@@ -35,6 +37,14 @@ public class Venue {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public String getName() {

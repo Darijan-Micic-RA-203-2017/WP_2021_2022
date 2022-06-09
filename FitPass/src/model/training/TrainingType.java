@@ -2,12 +2,14 @@ package model.training;
 
 public class TrainingType {
 	private long id;
+	private boolean logicallyDeleted;
 	private String name;
 	
 	public TrainingType() {}
 	
-	public TrainingType(long id, String name) {
+	public TrainingType(long id, boolean logicallyDeleted, String name) {
 		this.id = id;
+		this.logicallyDeleted = logicallyDeleted;
 		this.name = name;
 	}
 	
@@ -17,6 +19,14 @@ public class TrainingType {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public boolean isLogicallyDeleted() {
+		return logicallyDeleted;
+	}
+	
+	public void setLogicallyDeleted(boolean logicallyDeleted) {
+		this.logicallyDeleted = logicallyDeleted;
 	}
 	
 	public String getName() {
