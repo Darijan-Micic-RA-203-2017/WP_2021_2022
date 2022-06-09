@@ -1,5 +1,7 @@
 package beans.venue;
 
+import java.util.List;
+
 import beans.location.Location;
 
 public class Venue {
@@ -7,7 +9,7 @@ public class Venue {
 	private boolean logicallyDeleted;
 	private String name;
 	private VenueType type;
-	private String content;
+	private List<VenueContent> contents;
 	private VenueStatus status;
 	private Location location;
 	private String logoPath;
@@ -17,13 +19,13 @@ public class Venue {
 	public Venue() {}
 	
 	public Venue(long id, boolean logicallyDeleted, String name, VenueType type, 
-			String content, VenueStatus status, Location location, String logoPath, 
-			double averageGrade, WorkingHours workingHours) {
+			List<VenueContent> contents, VenueStatus status, Location location, 
+			String logoPath, double averageGrade, WorkingHours workingHours) {
 		this.id = id;
 		this.logicallyDeleted = logicallyDeleted;
 		this.name = name;
 		this.type = type;
-		this.content = content;
+		this.contents = contents;
 		this.status = status;
 		this.location = location;
 		this.logoPath = logoPath;
@@ -63,12 +65,12 @@ public class Venue {
 		this.type = type;
 	}
 	
-	public String getContent() {
-		return content;
+	public List<VenueContent> getContents() {
+		return contents;
 	}
 	
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(List<VenueContent> contents) {
+		this.contents = contents;
 	}
 	
 	public VenueStatus getStatus() {
