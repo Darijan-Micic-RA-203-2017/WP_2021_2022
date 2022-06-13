@@ -1,0 +1,138 @@
+package dao;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
+import beans.user.Gender;
+import beans.user.UserRole;
+import dto.user.UserDTO;
+
+public class UserDAO {
+	private HashMap<Long, UserDTO> users = new HashMap<Long, UserDTO>();
+	
+	public UserDAO() {}
+	
+	public UserDAO(String contextPath) {
+		loadUsers(contextPath);
+	}
+	
+	public HashMap<Long, UserDTO> getUsers() {
+		return users;
+	}
+	
+	private void loadUsers(String contextPath) {
+		BufferedReader reader = null;
+		try {
+			File usersFile = new File(contextPath + "/storage/users.txt");
+			reader = new BufferedReader(new FileReader(usersFile));
+			
+			String line;
+			StringTokenizer stringTokenizer;
+			while ((line = reader.readLine()) != null) {
+				line = line.trim();
+				if (line.equals("") || line.indexOf('#') == 0) {
+					continue;
+				}
+				
+				stringTokenizer = new StringTokenizer(line, ";", true);
+				while (stringTokenizer.hasMoreTokens()) {
+					long id = 
+							Long.parseLong(stringTokenizer.nextToken().trim());
+					stringTokenizer.nextToken();
+					boolean logicallyDeleted = 
+							Boolean.parseBoolean(stringTokenizer.nextToken().trim());
+					stringTokenizer.nextToken();
+					String username = stringTokenizer.nextToken().trim();
+					stringTokenizer.nextToken();
+					String password = stringTokenizer.nextToken().trim();
+					stringTokenizer.nextToken();
+					String firstName = stringTokenizer.nextToken().trim();
+					stringTokenizer.nextToken();
+					String lastName = stringTokenizer.nextToken().trim();
+					stringTokenizer.nextToken();
+					Gender gender = 
+							Gender.parseGender(stringTokenizer.nextToken().trim());
+					stringTokenizer.nextToken();
+					String dateOfBirthAsString = stringTokenizer.nextToken().trim();
+					stringTokenizer.nextToken();
+					UserRole role = 
+							UserRole.parseUserRole(stringTokenizer.nextToken().trim());
+					stringTokenizer.nextToken();
+					String trainingRecordsIdsListAsString = 
+							stringTokenizer.nextToken().trim();
+					ArrayList<Long> trainingRecordsIds = StringToListConverter
+							.convertToLongArrayList(trainingRecordsIdsListAsString);
+					stringTokenizer.nextToken();
+					String possibleMembershipId = stringTokenizer.nextToken().trim();
+					String membershipId = "";
+					if (!possibleMembershipId.equals(";")) {
+						membershipId = possibleMembershipId;
+						stringTokenizer.nextToken();
+					}
+					System.out.println("MembershipId: " + membershipId);
+					long ownedVenueId = 
+							Long.parseLong(stringTokenizer.nextToken().trim());
+					System.out.println("OwnedVenueId: " + ownedVenueId);
+					stringTokenizer.nextToken();
+					String visitedVenuesIdsListAsString = 
+							stringTokenizer.nextToken().trim();
+					ArrayList<Long> visitedVenuesIds = StringToListConverter
+							.convertToLongArrayList(visitedVenuesIdsListAsString);
+					System.out.println("VisitedVenuesIds: " + visitedVenuesIds);
+					stringTokenizer.nextToken();
+					int earnedPoints = 
+							Integer.parseInt(stringTokenizer.nextToken().trim());
+					stringTokenizer.nextToken();
+					long buyerTypeId = 
+							Long.parseLong(stringTokenizer.nextToken().trim());
+					
+					users.put(id, new UserDTO(id, logicallyDeleted, username, password, 
+							firstName, lastName, gender, dateOfBirthAsString, role, 
+							trainingRecordsIds, membershipId, ownedVenueId, 
+							visitedVenuesIds, earnedPoints, buyerTypeId));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void saveUsers() {
+		BufferedWriter writer = null;
+		try {
+			File usersFile = new File("/storage/users.txt");
+			writer = new BufferedWriter(new FileWriter(usersFile));
+			
+			StringBuilder stringBuilder = new StringBuilder();
+			for (UserDTO u: users.values()) {
+				stringBuilder.append(u).append("\n");
+			}
+			
+			writer.write(stringBuilder.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
