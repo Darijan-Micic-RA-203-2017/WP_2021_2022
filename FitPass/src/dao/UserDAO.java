@@ -15,18 +15,21 @@ import dto.user.UserDTO;
 
 public class UserDAO {
 	private HashMap<Long, UserDTO> users = new HashMap<Long, UserDTO>();
+	private String contextPath;
 	
 	public UserDAO() {}
 	
 	public UserDAO(String contextPath) {
-		loadUsers(contextPath);
+		this.contextPath = contextPath;
+		
+		loadUsers();
 	}
 	
 	public HashMap<Long, UserDTO> getUsers() {
 		return users;
 	}
 	
-	private void loadUsers(String contextPath) {
+	private void loadUsers() {
 		BufferedReader reader = null;
 		try {
 			File usersFile = new File(contextPath + "/storage/users.txt");
@@ -114,7 +117,7 @@ public class UserDAO {
 	public void saveUsers() {
 		BufferedWriter writer = null;
 		try {
-			File usersFile = new File("/storage/users.txt");
+			File usersFile = new File(contextPath + "/storage/users.txt");
 			writer = new BufferedWriter(new FileWriter(usersFile));
 			
 			StringBuilder stringBuilder = new StringBuilder();
