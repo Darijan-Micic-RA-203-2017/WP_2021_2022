@@ -205,4 +205,20 @@ public class UserDTO {
 	public void setBuyerTypeId(long buyerTypeId) {
 		this.buyerTypeId = buyerTypeId;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(id).append(";").append(logicallyDeleted).append(";")
+				.append(username).append(";").append(password).append(";")
+				.append(firstName).append(";").append(lastName).append(";")
+				.append(gender).append(";").append(dateOfBirthAsString).append(";")
+				.append(role).append(";").append(trainingRecordsIds).append(";")
+				.append(membershipId).append(";").append(ownedVenueId).append(";")
+				.append(visitedVenuesIds).append(";").append(earnedPoints).append(";")
+				.append(buyerTypeId);
+		
+		return builder.toString();
+	}
 }
