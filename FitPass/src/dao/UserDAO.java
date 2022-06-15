@@ -25,8 +25,18 @@ public class UserDAO {
 		loadUsers();
 	}
 	
-	public HashMap<Long, UserDTO> getUsers() {
+	public HashMap<Long, UserDTO> getAllUsers() {
 		return users;
+	}
+	
+	public UserDTO findBy(String username, String password) {
+		for (UserDTO u: users.values()) {
+			if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+				return u;
+			}
+		}
+		
+		return null;
 	}
 	
 	private void loadUsers() {
@@ -78,16 +88,13 @@ public class UserDAO {
 						membershipId = possibleMembershipId;
 						stringTokenizer.nextToken();
 					}
-					System.out.println("MembershipId: " + membershipId);
 					long ownedVenueId = 
 							Long.parseLong(stringTokenizer.nextToken().trim());
-					System.out.println("OwnedVenueId: " + ownedVenueId);
 					stringTokenizer.nextToken();
 					String visitedVenuesIdsListAsString = 
 							stringTokenizer.nextToken().trim();
 					ArrayList<Long> visitedVenuesIds = StringToListConverter
 							.convertToLongArrayList(visitedVenuesIdsListAsString);
-					System.out.println("VisitedVenuesIds: " + visitedVenuesIds);
 					stringTokenizer.nextToken();
 					int earnedPoints = 
 							Integer.parseInt(stringTokenizer.nextToken().trim());
