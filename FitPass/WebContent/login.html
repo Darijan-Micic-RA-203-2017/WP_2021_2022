@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="login.css">
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="login.js"></script>
+<title>Prijava korisnika</title>
+</head>
+<body>
+	<form id="loginForm">
+		<table>
+			<tr>
+				<td>Username: </td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>Password: </td>
+				<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Prijava</button></td>
+			</tr>
+		</table>
+		<p id="loginError" hidden="true"></p>
+		<p id="loginSuccess" hidden="true"></p>
+	</form>
+</body>
+</html>

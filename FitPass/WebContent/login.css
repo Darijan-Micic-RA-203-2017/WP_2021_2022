@@ -1,0 +1,15 @@
+tr {
+	cursor: pointer;
+}
+
+tr.selected {
+	background: lightblue;
+}
+
+#loginError {
+	color: red;
+}
+
+#loginSuccess {
+	color: green;
+}
