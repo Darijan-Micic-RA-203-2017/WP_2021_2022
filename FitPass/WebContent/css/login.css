@@ -1,9 +1,5 @@
-tr {
-	cursor: pointer;
-}
-
-tr.selected {
-	background: lightblue;
+button {
+	background: lightskyblue;
 }
 
 #loginError {

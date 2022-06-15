@@ -4,8 +4,8 @@ $(document).ready(function() {
 		
 		$('#loginError').hide();
 		
-		let username = $('input[name="username"]').val();
-		let password = $('input[name="password"]').val();
+		let username = $('#usernameInput').val();
+		let password = $('#passwordInput').val();
 		
 		$.ajax({
 			type: 'POST',
@@ -14,13 +14,11 @@ $(document).ready(function() {
 			contentType: 'application/json',
 			success: function() {
 				$('#loginSuccess').text('Korisnik je uspešno prijavljen!');
-				$('#loginSuccess').show();
-				//$('#loginSuccess').show().delay(3000).fadeOut();
+				$('#loginSuccess').show().delay(3000).fadeOut();
 			},
 			error: function(message) {
 				$('#loginError').text(message.responseText);
-				$('#loginError').show();
-				//$('#loginError').show().delay(5000).fadeOut();
+				$('#loginError').show().delay(5000).fadeOut();
 			}
 		});
 	});

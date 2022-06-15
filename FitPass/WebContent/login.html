@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="login.css">
-<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="login.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 <title>Prijava korisnika</title>
 </head>
 <body>
-	<form id="loginForm">
-		<table>
-			<tr>
-				<td>Username: </td>
-				<td><input type="text" name="username"></td>
-			</tr>
-			<tr>
-				<td>Password: </td>
-				<td><input type="password" name="password"></td>
-			</tr>
-			<tr>
-				<td><button type="submit">Prijava</button></td>
-			</tr>
-		</table>
-		<p id="loginError" hidden="true"></p>
-		<p id="loginSuccess" hidden="true"></p>
-	</form>
+	<div class="container">
+		<form role="form" id="loginForm">
+			<div class="form-group">
+				<label for="usernameInput">Korisničko ime:</label>
+				<input type="text" class="form-control" id="usernameInput">
+			</div>
+			<div class="form-group">
+				<label for="passwordInput">Lozinka:</label>
+				<input type="password" class="form-control" id="passwordInput">
+			</div>
+			<button type="submit" class="btn btn-default">Prijava</button>
+			<p class="help-block" id="loginError" hidden="true"></p>
+			<p class="help-block" id="loginSuccess" hidden="true"></p>
+		</form>
+	</div>
 </body>
 </html>
