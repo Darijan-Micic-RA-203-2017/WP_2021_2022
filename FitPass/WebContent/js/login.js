@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	$('#usernameInput').focus();
+	
 	$('#loginForm').submit(function(event) {
 		event.preventDefault();
 		
