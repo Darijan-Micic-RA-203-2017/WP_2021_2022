@@ -17,6 +17,8 @@ $(document).ready(function() {
 			success: function() {
 				$('#loginSuccess').text('Korisnik je uspešno prijavljen!');
 				$('#loginSuccess').show().delay(3000).fadeOut();
+
+				window.location.href = 'http://localhost:8080/fit-pass/api/logged-user';
 			},
 			error: function(message) {
 				$('#loginError').text(message.responseText);
