@@ -1,12 +1,11 @@
 package dto.user;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import beans.training.TrainingRecord;
-import beans.user.Gender;
 import beans.user.User;
-import beans.user.UserRole;
 import beans.venue.Venue;
 
 public class UserDTO {
@@ -16,9 +15,9 @@ public class UserDTO {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private Gender gender;
-	private String dateOfBirthAsString;
-	private UserRole role;
+	private String gender;
+	private String dateOfBirth;
+	private String role;
 	private List<Long> trainingRecordsIds;
 	private String membershipId;
 	private long ownedVenueId;
@@ -29,8 +28,8 @@ public class UserDTO {
 	public UserDTO() {}
 	
 	public UserDTO(long id, boolean logicallyDeleted, String username, String password, 
-			String firstName, String lastName, Gender gender, String dateOfBirthAsString, 
-			UserRole role, List<Long> trainingRecordsIds, String membershipId, 
+			String firstName, String lastName, String gender, String dateOfBirth, 
+			String role, List<Long> trainingRecordsIds, String membershipId, 
 			long ownedVenueId, List<Long> visitedVenuesIds, int earnedPoints, 
 			long buyerTypeId) {
 		this.id = id;
@@ -40,7 +39,7 @@ public class UserDTO {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
-		this.dateOfBirthAsString = dateOfBirthAsString;
+		this.dateOfBirth = dateOfBirth;
 		this.role = role;
 		this.trainingRecordsIds = trainingRecordsIds;
 		this.membershipId = membershipId;
@@ -57,9 +56,10 @@ public class UserDTO {
 		this.password = user.getPassword();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
-		this.gender = user.getGender();
-		this.dateOfBirthAsString = user.getDateOfBirth().toString();
-		this.role = user.getRole();
+		this.gender = user.getGender().toString();
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-ddT:hh:mm:ss");
+		this.dateOfBirth = dateFormatter.format(user.getDateOfBirth());
+		this.role = user.getRole().toString();
 		this.trainingRecordsIds = new ArrayList<Long>();
 		for (TrainingRecord tR: user.getTrainingRecords()) {
 			this.trainingRecordsIds.add(tR.getId());
@@ -134,27 +134,27 @@ public class UserDTO {
 		this.lastName = lastName;
 	}
 	
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 	
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	
-	public String getDateOfBirthAsString() {
-		return dateOfBirthAsString;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 	
-	public void setDateOfBirthAsString(String dateOfBirthAsString) {
-		this.dateOfBirthAsString = dateOfBirthAsString;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	
-	public UserRole getRole() {
+	public String getRole() {
 		return role;
 	}
 	
-	public void setRole(UserRole role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	
@@ -213,7 +213,7 @@ public class UserDTO {
 		builder.append(id).append(";").append(logicallyDeleted).append(";")
 				.append(username).append(";").append(password).append(";")
 				.append(firstName).append(";").append(lastName).append(";")
-				.append(gender).append(";").append(dateOfBirthAsString).append(";")
+				.append(gender).append(";").append(dateOfBirth).append(";")
 				.append(role).append(";").append(trainingRecordsIds).append(";")
 				.append(membershipId).append(";").append(ownedVenueId).append(";")
 				.append(visitedVenuesIds).append(";").append(earnedPoints).append(";")

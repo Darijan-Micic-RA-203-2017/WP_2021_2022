@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import beans.user.Gender;
-import beans.user.UserRole;
 import dto.user.UserDTO;
 
 public class UserDAO {
@@ -29,7 +27,17 @@ public class UserDAO {
 		return users;
 	}
 	
-	public UserDTO findBy(String username, String password) {
+	public UserDTO findByUsername(String username) {
+		for (UserDTO u: users.values()) {
+			if (u.getUsername().equals(username)) {
+				return u;
+			}
+		}
+		
+		return null;
+	}
+	
+	public UserDTO findByUsernameAndPassword(String username, String password) {
 		for (UserDTO u: users.values()) {
 			if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
 				return u;
@@ -37,6 +45,24 @@ public class UserDAO {
 		}
 		
 		return null;
+	}
+	
+	public void registerANewBuyer(UserDTO newBuyer) {
+		long idOfNewBuyer = generateNewId();
+		users.put(idOfNewBuyer, newBuyer);
+	}
+	
+	private long generateNewId() {
+		long maxId = 0;
+		for (long id: users.keySet()) {
+			if (id > maxId) {
+				maxId = id;
+			}
+		}
+		
+		long newId = maxId + 1;
+		
+		return newId;
 	}
 	
 	private void loadUsers() {
@@ -69,13 +95,11 @@ public class UserDAO {
 					stringTokenizer.nextToken();
 					String lastName = stringTokenizer.nextToken().trim();
 					stringTokenizer.nextToken();
-					Gender gender = 
-							Gender.parseGender(stringTokenizer.nextToken().trim());
+					String gender = stringTokenizer.nextToken().trim();
 					stringTokenizer.nextToken();
-					String dateOfBirthAsString = stringTokenizer.nextToken().trim();
+					String dateOfBirth = stringTokenizer.nextToken().trim();
 					stringTokenizer.nextToken();
-					UserRole role = 
-							UserRole.parseUserRole(stringTokenizer.nextToken().trim());
+					String role = stringTokenizer.nextToken().trim();
 					stringTokenizer.nextToken();
 					String trainingRecordsIdsListAsString = 
 							stringTokenizer.nextToken().trim();
@@ -103,7 +127,7 @@ public class UserDAO {
 							Long.parseLong(stringTokenizer.nextToken().trim());
 					
 					users.put(id, new UserDTO(id, logicallyDeleted, username, password, 
-							firstName, lastName, gender, dateOfBirthAsString, role, 
+							firstName, lastName, gender, dateOfBirth, role, 
 							trainingRecordsIds, membershipId, ownedVenueId, 
 							visitedVenuesIds, earnedPoints, buyerTypeId));
 				}
