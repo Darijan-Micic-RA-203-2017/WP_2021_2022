@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/registration.css">
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="js/registration.js"></script>
+	<title>Registracija kao kupac</title>
+</head>
+<body class="text-bg-dark">
+	<div class="container d-flex max-vw-50 min-vh-100">
+		<form role="form" id="registrationForm">
+			<div class="form-group">
+				<label for="usernameInput">Korisničko ime:</label>
+				<input type="text" class="form-control" id="usernameInput">
+			</div>
+			<div class="form-group">
+				<label for="passwordInput">Lozinka:</label>
+				<input type="text" class="form-control" id="passwordInput">
+			</div>
+			<div class="form-group">
+				<label for="firstNameInput">Ime:</label>
+				<input type="text" class="form-control" id="firstNameInput">
+			</div>
+			<div class="form-group">
+				<label for="lastNameInput">Prezime:</label>
+				<input type="text" class="form-control" id="lastNameInput">
+			</div>
+			<div class="form-group">
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" name="genderInputRadioGroup" 
+							id="maleGenderInput" value="MALE" checked>
+					<label class="form-check-label" for="maleGenderInput">Muški</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" name="genderInputRadioGroup" 
+							id="femaleGenderInput" value="FEMALE">
+					<label class="form-check-label" for="femaleGenderInput">Ženski</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dateOfBirthInput">Datum rođenja:</label>
+				<input type="date" class="form-control" id="dateOfBirthInput">
+			</div>
+			<div class="submitButtonDiv">
+				<button type="submit" class="btn-default bg-primary text-white">Registruj se</button>
+			</div>
+			<p id="registrationSuccess" hidden>Tekst uspeha.</p>
+			<p id="registrationError" hidden>Tekst greške.</p>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+div.container {
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	min-width: 50%;
+}
+
+form > * {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.submitButtonDiv {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+form > div.submitButtonDiv > button {
+	width: 50%;
+}
+
+#loginError {
+	color: red;
+}
+
+#loginSuccess {
+	color: green;
+}
