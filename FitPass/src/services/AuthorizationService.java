@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import dao.UserDAO;
 import dto.user.UserDTO;
+import validators.UserValidator;
 
 @Path("")
 public class AuthorizationService {
@@ -31,13 +32,37 @@ public class AuthorizationService {
 	}
 	
 	@POST
+	@Path("/register-as-a-buyer")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registerAsABuyer(UserDTO user, @Context HttpServletRequest request) {
+		if (!UserValidator.isNewlyRegisteredBuyerDTOValid(user)) {
+			return Response.status(400).entity("Invalid data!").build();
+		}
+		
+		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
+		
+		UserDTO existingUserWithSameUsername = 
+				userDAO.findByUsername(user.getUsername());
+		if (existingUserWithSameUsername != null) {
+			return Response.status(400)
+					.entity("Given username is already taken!").build();
+		}
+		
+		userDAO.registerANewBuyer(user);
+		
+		return Response.status(201).build();
+	}
+	
+	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(UserDTO user, @Context HttpServletRequest request) {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
-		UserDTO loggedUser = userDAO.findBy(user.getUsername(), user.getPassword());
+		UserDTO loggedUser = userDAO.findByUsernameAndPassword(user.getUsername(), 
+				user.getPassword());
 		if (loggedUser == null) {
 			return Response.status(400).entity("Invalid username and/or password!").build();
 		}
