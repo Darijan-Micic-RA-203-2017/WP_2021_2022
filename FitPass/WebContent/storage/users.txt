@@ -1,2 +1,2 @@
-1;false;DarijanMicic98;darijanMicic98;Darijan;Mićić;MALE;Fri Jul 10 00:00:00 1998;ADMINISTRATOR;[];;-1;[];0;-1
-2;false;AnaIvanovic99;ana99;Ana;Ivanović;FEMALE;Sat Nov 06 00:00:00 1999;TRAINER;[1, 2, 3, 4, 5];;-1;[];0;-1
+1;false;DarijanMicic98;darijanMicic98;Darijan;Mićić;MALE;1998-07-10T00:00:00;ADMINISTRATOR;[];;-1;[];0;-1
+2;false;AnaIvanovic99;ana99;Ana;Ivanović;FEMALE;1999-11-06T00:00:00;TRAINER;[1, 2, 3, 4, 5];;-1;[];0;-1
