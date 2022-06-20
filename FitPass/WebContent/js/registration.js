@@ -14,14 +14,19 @@ $(document).ready(function() {
 			let lastName = $('#lastNameInput').val();
 			let gender = $('input[name="genderInputRadioGroup"]').val();
 			let dateOfBirth = $('#dateOfBirthInput').val();
+			let dateOfBirthWithAddedTimeSegment = '';
+			if (typeof dateOfBirth === 'string') {
+				dateOfBirthWithAddedTimeSegment = dateOfBirth.concat('T00:00:00');
+			}
 
 			$.ajax({
 				type: 'POST',
 				url: 'api/register-as-a-buyer',
 				data: JSON.stringify({id: 0, logicallyDeleted: false, username: username, 
 					password: password, firstName: firstName, lastName: lastName, gender: gender, 
-					dateOfBirth: dateOfBirth, role: 'BUYER', trainingRecordsIds: [], membershipId: '', 
-					ownedVenueId: -1, visitedVenuesIds: [], earnedPoints: 0, buyerTypeId: 1}),
+					dateOfBirth: dateOfBirthWithAddedTimeSegment, role: 'BUYER', 
+					trainingRecordsIds: [], membershipId: '', ownedVenueId: -1, visitedVenuesIds: [], 
+					earnedPoints: 0, buyerTypeId: 1}),
 				contentType: 'application/json',
 				success: function() {
 					$('#registrationSuccess').text('Uspešno ste registrovani kao kupac!');
@@ -45,7 +50,8 @@ function isDataValid() {
 
 	let username = $('#usernameInput').val();
 	if (!isUsernameValid(username)) {
-		validationMessage = 'Korisničko ime mora započeti velikim slovom!';
+		validationMessage = 'Korisničko ime mora početi slovom, ne sme sadržati razmake i ' + 
+			'specijalne znakove (osim povlake, donje crte i tačke)!';
 		return validationMessage;
 	}
 
@@ -83,15 +89,13 @@ function isDataValid() {
 }
 
 function isUsernameValid(username) {
-	let usernameRegexp = '/[a-zA-Z][-_a-zA-Z0-9\.]+/g';
-	let usernameMatches = username.match(usernameRegexp);
+	if (typeof username !== 'string') {
+		return false;
+	}
 
-	if (usernameMatches != null) {
-		if (typeof usernameMatches === Array) {
-			if (usernameMatches === [username]) {
-				return true;
-			}
-		}
+	let usernameRegexp = /^[a-zA-Z][-_a-zA-Z0-9\.]+$/;
+	if (usernameRegexp.test(username)) {
+		return true;
 	}
 
 	return false;
@@ -110,15 +114,13 @@ function isPasswordValid(password) {
 }
 
 function isNameValid(name) {
-	let nameRegexp = '/[A-Z\p{L}][a-z\p{L}]+([ -][A-Z\p{L}][a-z\p{L}]+)*/g';
-	let nameMatches = name.match(nameRegexp);
+	if (typeof name !== 'string') {
+		return false;
+	}
 
-	if (nameMatches != null) {
-		if (typeof nameMatches === Array) {
-			if (nameMatches === [name]) {
-				return true;
-			}
-		}
+	let nameRegexp = /^[A-Z\p{L}][a-z\p{L}]+([ -][A-Z\p{L}][a-z\p{L}]+)*$/u;
+	if (nameRegexp.test(name)) {
+		return true;
 	}
 
 	return false;
@@ -137,16 +139,14 @@ function isGenderValid(gender) {
 }
 
 function isDateOfBirthValid(dateOfBirth) {
-	let dateOfBirthRegexp = '/(19|20)[0-9]{2}-(0[1-9]|1[012])-^(0[1-9]|[12][0-9]|3[01])/g';
-	let dateOfBirthMatches = dateOfBirth.match(dateOfBirthRegexp);
-
-	if (dateOfBirthMatches != null) {
-		if (typeof dateOfBirthMatches === Array) {
-			if (dateOfBirthMatches === [dateOfBirth]) {
-				return true;
-			}
-		}
+	if (typeof dateOfBirth !== 'string') {
+		return false;
 	}
 
+	let dateOfBirthRegexp = /^(19|20)[0-9]{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
+	if (dateOfBirthRegexp.test(dateOfBirth)) {
+		return true;
+	}
+	
 	return false;
 }
