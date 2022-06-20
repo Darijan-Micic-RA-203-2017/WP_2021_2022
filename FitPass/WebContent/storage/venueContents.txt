@@ -1,0 +1,22 @@
+1;false;Velika dvorana;1;imagePath;Velika dvorana je površine 48.000 m2 raspoređenih u 6 nivoa, kapaciteta 20.000 - 25.000 posetilaca, u zavisnosti od događaja.;
+2;false;VIP lože;2;imagePath;Lože su opremljene luksuznim nameštajem i odvojene od tribina velike dvorane.;
+3;false;Mala dvorana;1;imagePath;Mala dvorana prostire se na 2.275 m2 na 2 nivoa, spoljni gabariti sale su 30x60 m. Služi kao prateći objekat i koristi se za pripreme i trening sportista. Toplom vezom, ispod saobraćajnice na jugu, povezana je sa velikom dvoranom. Teren u maloj dvorani je dimenzije 29,20 m x 43,70 m i visine 10 m, koji po potrebi može da se podeli na dva košarkaška terena (koševi su montirani na zidovima).;
+4;false;4 svlačionice male dvorane;3;imagePath;Svlačionice su dizajnirane po najsavremenijim standardima i opremljene svim što je potrebno sportistima.;
+5;false;Kafe bar;4;imagePath;Bar sa osvežavajućim pićima.;
+6;false;Prijavnica male dvorane;5;imagePath;Prostorija za prijavu ulaska i boravka u objektu.;
+7;false;Teretni lift;6;imagePath;Lift povezuje dva nivoa male dvorane.;
+8;false;Tribina;9;imagePath;Tribine klizališta imaju kapacitet od 1.000 mesta.;
+9;false;Ledna pista;10;imagePath;Ledena pista je dimenzija 56 m x 26 m (ukupno 1.456 m2).;Od sredine septembra do početka maja.
+10;false;Biletarnica;11;imagePath;Biletarnica se nalazi odmah do ulaza za gledaoce.;
+11;false;Građanske svlačionice;3;imagePath;2 svlačionice, svaka površine 100 m2.;
+12;false;Klupske svlačionice;3;imagePath;6 svlačionica, svaka površine 30 m2.;
+13;false;Gostinske svlačionice;3;imagePath;2 svlačionice, svaka površine 30 m2.;
+14;false;Ambulanta;12;imagePath;Ambulanta je površine 24,5 m2.;
+15;false;Bar;4;imagePath;Bar je površine 80 m2.;
+16;false;Sala za novinare;13;imagePath;Sala za novinare je površine 36 m2.;
+17;false;Sala za sastanke;14;imagePath;Sala za sastanke je površine 36 m2.;
+18;false;Garderoba;15;imagePath;Građani mogu odložiti svoju odeću na čuvanje tokom klizanja.;
+19;false;Otvoreni bazen za međunarodna takmičenja;7;imagePath;Bazen olimpijskih dimenzija (dužine 50 m, širine 21 m i dubine 2 m).;
+20;false;Otvoreni rekreativni bazen;7;imagePath;Bazen poseduje elemente akvaparka.;
+21;false;Otvoreni bazen za decu;7;imagePath;Bazen je dubine 35 cm, u sredini sadrži pečurke koje prskaju vodu.;
+22;false;Zatvoreni olimpijski bazen;8;imagePath;Bazen olimpijskih dimenzija (dužine 50 m, širine 21 m i dubine 2 m).;

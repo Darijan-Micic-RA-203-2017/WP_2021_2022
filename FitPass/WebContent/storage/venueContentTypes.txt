@@ -1,0 +1,15 @@
+1;false;Dvorana
+2;false;VIP loža
+3;false;Svlačionica
+4;false;Bar
+5;false;Prijavnica
+6;false;Lift
+7;false;Tribina
+8;false;Ledna pista
+9;false;Biletarnica
+10;false;Ambulanta
+11;false;Sala za novinare
+12;false;Sala za sastanke;
+13;false,Garderoba
+14;false;Otvoreni bazen
+15;false;Zatvoreni bazen
