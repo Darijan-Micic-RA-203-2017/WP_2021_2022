@@ -14,15 +14,15 @@ public class StringToWorkingHoursConverter {
 		WorkingHours workingHours = new WorkingHours();
 		
 		StringTokenizer stringTokenizer = 
-				new StringTokenizer(workingHoursAsString, ", ", true);
+				new StringTokenizer(workingHoursAsString, "; ", true);
 		while (stringTokenizer.hasMoreTokens()) {
 			String openingHoursSegment = stringTokenizer.nextToken().trim();
-			workingHours.setOpeningHours(openingHoursSegment.substring(15));
+			workingHours.setOpeningHours(openingHoursSegment);
 			
 			stringTokenizer.nextToken();
 			
 			String closingHoursSegment = stringTokenizer.nextToken().trim();
-			workingHours.setClosingHours(closingHoursSegment.substring(15));
+			workingHours.setClosingHours(closingHoursSegment);
 		}
 		
 		return workingHours;

@@ -31,8 +31,8 @@ public class WorkingHours {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append("{openingHours: ").append(openingHours).append(", ")
-				.append("closingHours: ").append(closingHours).append("}");
+		builder.append("{").append(openingHours).append("; ")
+				.append(closingHours).append("}");
 		
 		return builder.toString();
 	}
