@@ -5,7 +5,6 @@ import java.util.List;
 
 import beans.venue.Venue;
 import beans.venue.VenueContent;
-import beans.venue.VenueStatus;
 import beans.venue.WorkingHours;
 
 public class VenueDTO {
@@ -14,7 +13,7 @@ public class VenueDTO {
 	private String name;
 	private long typeId;
 	private List<Long> contentsIds;
-	private VenueStatus status;
+	private String status;
 	private long locationId;
 	private String logoPath;
 	private double averageGrade;
@@ -23,8 +22,8 @@ public class VenueDTO {
 	public VenueDTO() {}
 	
 	public VenueDTO(long id, boolean logicallyDeleted, String name, long typeId, 
-			List<Long> contentsIds, VenueStatus status, long locationId, 
-			String logoPath, double averageGrade, WorkingHours workingHours) {
+			List<Long> contentsIds, String status, long locationId, String logoPath, 
+			double averageGrade, WorkingHours workingHours) {
 		this.id = id;
 		this.logicallyDeleted = logicallyDeleted;
 		this.name = name;
@@ -46,7 +45,7 @@ public class VenueDTO {
 		for (VenueContent vC: venue.getContents()) {
 			this.contentsIds.add(vC.getId());
 		}
-		this.status = venue.getStatus();
+		this.status = venue.getStatus().toString();
 		this.locationId = venue.getLocation().getId();
 		this.logoPath = venue.getLogoPath();
 		this.averageGrade = venue.getAverageGrade();
@@ -93,11 +92,11 @@ public class VenueDTO {
 		this.contentsIds = contentsIds;
 	}
 	
-	public VenueStatus getStatus() {
+	public String getStatus() {
 		return status;
 	}
 	
-	public void setStatus(VenueStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	
@@ -131,5 +130,18 @@ public class VenueDTO {
 	
 	public void setWorkingHours(WorkingHours workingHours) {
 		this.workingHours = workingHours;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(id).append(";").append(logicallyDeleted).append(";")
+				.append(name).append(";").append(typeId).append(";")
+				.append(contentsIds).append(";").append(status).append(";")
+				.append(locationId).append(";").append(logoPath).append(";")
+				.append(averageGrade).append(";").append(workingHours);
+		
+		return builder.toString();
 	}
 }

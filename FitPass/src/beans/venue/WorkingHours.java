@@ -26,4 +26,14 @@ public class WorkingHours {
 	public void setClosingHours(String closingHours) {
 		this.closingHours = closingHours;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("{openingHours: ").append(openingHours).append(", ")
+				.append("closingHours: ").append(closingHours).append("}");
+		
+		return builder.toString();
+	}
 }
