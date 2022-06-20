@@ -4,8 +4,6 @@ $(document).ready(function() {
 	$('#registrationForm').submit(function(event) {
 		event.preventDefault();
 		
-		$('#registrationError').hide();
-		
 		let validationMessage = isDataValid();
 		if (validationMessage === '') {
 			let username = $('#usernameInput').val();
@@ -29,14 +27,12 @@ $(document).ready(function() {
 					earnedPoints: 0, buyerTypeId: 1}),
 				contentType: 'application/json',
 				success: function() {
-					$('#registrationSuccess').text('Uspešno ste registrovani kao kupac!');
-					$('#registrationSuccess').show().delay(3000).fadeOut();
+					alert('Uspešno ste registrovani kao kupac!');
 					
 					window.location.href = 'http://localhost:8080/fit-pass/login.html';
 				},
 				error: function(message) {
-					$('#registrationError').text(message.responseText);
-					$('#registrationError').show().delay(5000).fadeOut();
+					alert(message.responseText);
 				}
 			});
 		} else {

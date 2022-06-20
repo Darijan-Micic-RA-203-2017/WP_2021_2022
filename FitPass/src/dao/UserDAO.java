@@ -50,6 +50,8 @@ public class UserDAO {
 	public void registerANewBuyer(UserDTO newBuyer) {
 		long idOfNewBuyer = generateNewId();
 		users.put(idOfNewBuyer, newBuyer);
+		
+		saveUsers();
 	}
 	
 	private long generateNewId() {

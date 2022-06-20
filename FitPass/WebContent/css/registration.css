@@ -21,11 +21,3 @@ form > * {
 form > div.submitButtonDiv > button {
 	width: 50%;
 }
-
-#loginError {
-	color: red;
-}
-
-#loginSuccess {
-	color: green;
-}
