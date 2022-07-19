@@ -1,21 +1,22 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import dao.VenueDAO;
 import dto.venue.VenueDTO;
 
-@Path("/venues")
+@Path("venues")
 public class VenueService {
 	@Context
 	ServletContext ctx;
@@ -31,17 +32,22 @@ public class VenueService {
 	}
 	
 	@GET
-	@Path("")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<VenueDTO> getAllVenues(@Context HttpServletRequest request) {
+	public Response getAllNonDeletedVenues(@Context HttpServletRequest request) {
 		VenueDAO venueDAO = (VenueDAO) ctx.getAttribute("venueDAO");
 		
 		ArrayList<VenueDTO> allVenues = new ArrayList<VenueDTO>();
 		for (VenueDTO v: venueDAO.getAllVenues().values()) {
-			allVenues.add(v);
+			if (!v.isLogicallyDeleted()) {
+				allVenues.add(v);
+			}
 		}
 		
-		return allVenues;
+		Comparator<VenueDTO> byStatusInReverseOrder = 
+				Comparator.comparing(VenueDTO::getStatus).reversed()
+				.thenComparing(VenueDTO::getId);
+		allVenues.sort(byStatusInReverseOrder);
+		
+		return Response.status(200).entity(allVenues).build();
 	}
 }
