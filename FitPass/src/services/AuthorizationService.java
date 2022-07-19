@@ -32,7 +32,7 @@ public class AuthorizationService {
 	}
 	
 	@POST
-	@Path("/register-as-a-buyer")
+	@Path("register-as-a-buyer")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response registerAsABuyer(UserDTO user, @Context HttpServletRequest request) {
@@ -55,7 +55,7 @@ public class AuthorizationService {
 	}
 	
 	@POST
-	@Path("/login")
+	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(UserDTO user, @Context HttpServletRequest request) {
@@ -67,22 +67,29 @@ public class AuthorizationService {
 			return Response.status(400).entity("Invalid username and/or password!").build();
 		}
 		
+		if (loggedUser.isLogicallyDeleted()) {
+			return Response.status(400).entity("User with entered credentials is deleted!").build();
+		}
+		
 		request.getSession().setAttribute("loggedUser", loggedUser);
 		
 		return Response.status(200).build();
 	}
 	
 	@POST
-	@Path("/logout")
-	public void logout(@Context HttpServletRequest request) {
+	@Path("logout")
+	public Response logout(@Context HttpServletRequest request) {
 		request.getSession().invalidate();
+		
+		return Response.status(200).entity("User was successfully logged out.").build();
 	}
 	
 	@GET
-	@Path("/logged-user")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("logged-user")
 	@Produces(MediaType.APPLICATION_JSON)
-	public UserDTO getLoggedUser(@Context HttpServletRequest request) {
-		return (UserDTO) request.getSession().getAttribute("loggedUser");
+	public Response getLoggedUser(@Context HttpServletRequest request) {
+		UserDTO loggedUser = (UserDTO) request.getSession().getAttribute("loggedUser");
+		
+		return Response.status(200).entity(loggedUser).build();
 	}
 }
