@@ -14,7 +14,7 @@ public class StringToWorkingHoursConverter {
 		WorkingHours workingHours = new WorkingHours();
 		
 		StringTokenizer stringTokenizer = 
-				new StringTokenizer(workingHoursAsString, "; ", true);
+				new StringTokenizer(workingHoursAsString, ",", true);
 		while (stringTokenizer.hasMoreTokens()) {
 			String openingHoursSegment = stringTokenizer.nextToken().trim();
 			workingHours.setOpeningHours(openingHoursSegment);

@@ -10,74 +10,82 @@ import dto.user.UserDTO;
 public class UserValidator {
 	public UserValidator() {}
 	
-	public static boolean isNewlyRegisteredBuyerDTOValid(UserDTO userDTO) {
+	public static boolean isNewlyRegisteredBuyerDTOValid(UserDTO newlyRegisteredBuyerDTO) {
 		boolean newlyRegisteredBuyerDTOValidity = true;
 		
-		if (!isUsernameValid(userDTO.getUsername())) {
+		if (newlyRegisteredBuyerDTO.getId() != 0) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (!isPasswordValid(userDTO.getPassword())) {
+		if (newlyRegisteredBuyerDTO.isLogicallyDeleted()) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (!isNameValid(userDTO.getFirstName())) {
+		if (!isUsernameValid(newlyRegisteredBuyerDTO.getUsername())) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (!isNameValid(userDTO.getLastName())) {
+		if (!isPasswordValid(newlyRegisteredBuyerDTO.getPassword())) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (!isGenderValid(userDTO.getGender())) {
+		if (!isNameValid(newlyRegisteredBuyerDTO.getFirstName())) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (!isDateOfBirthValid(userDTO.getDateOfBirth())) {
+		if (!isNameValid(newlyRegisteredBuyerDTO.getLastName())) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getRole() != null) {
-			if (!userDTO.getRole().equals(UserRole.BUYER.toString())) {
+		if (!isGenderValid(newlyRegisteredBuyerDTO.getGender())) {
+			newlyRegisteredBuyerDTOValidity = false;
+		}
+		
+		if (!isDateOfBirthValid(newlyRegisteredBuyerDTO.getDateOfBirth())) {
+			newlyRegisteredBuyerDTOValidity = false;
+		}
+		
+		if (newlyRegisteredBuyerDTO.getRole() != null) {
+			if (!newlyRegisteredBuyerDTO.getRole().equals(UserRole.BUYER.toString())) {
 				newlyRegisteredBuyerDTOValidity = false;
 			}
 		} else {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getTrainingRecordsIds() != null) {
-			if (!userDTO.getTrainingRecordsIds().isEmpty()) {
+		if (newlyRegisteredBuyerDTO.getTrainingRecordsIds() != null) {
+			if (!newlyRegisteredBuyerDTO.getTrainingRecordsIds().isEmpty()) {
 				newlyRegisteredBuyerDTOValidity = false;
 			}
 		} else {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getMembershipId() != null) {
-			if (!userDTO.getMembershipId().equals("")) {
+		if (newlyRegisteredBuyerDTO.getMembershipId() != null) {
+			if (!newlyRegisteredBuyerDTO.getMembershipId().equals("")) {
 				newlyRegisteredBuyerDTOValidity = false;
 			}
 		} else {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getOwnedVenueId() != -1) {
+		if (newlyRegisteredBuyerDTO.getOwnedVenueId() != -1) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getVisitedVenuesIds() != null) {
-			if (!userDTO.getVisitedVenuesIds().isEmpty()) {
+		if (newlyRegisteredBuyerDTO.getVisitedVenuesIds() != null) {
+			if (!newlyRegisteredBuyerDTO.getVisitedVenuesIds().isEmpty()) {
 				newlyRegisteredBuyerDTOValidity = false;
 			}
 		} else {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getEarnedPoints() != 0) {
+		if (newlyRegisteredBuyerDTO.getEarnedPoints() != 0) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
-		if (userDTO.getBuyerTypeId() != 1) {
+		if (newlyRegisteredBuyerDTO.getBuyerTypeId() != 1) {
 			newlyRegisteredBuyerDTOValidity = false;
 		}
 		
@@ -86,6 +94,10 @@ public class UserValidator {
 	
 	public static boolean isUserDTOValid(UserDTO userDTO) {
 		boolean userDTOValidity = true;
+		
+		if (userDTO.getId() <= 0) {
+			userDTOValidity = false;
+		}
 		
 		if (!isUsernameValid(userDTO.getUsername())) {
 			userDTOValidity = false;
