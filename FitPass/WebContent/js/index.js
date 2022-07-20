@@ -31,8 +31,7 @@ $(document).ready(function() {
                 newTableData = getLocation(venue['locationId']);
                 newTableRow.append(newTableData);
                 
-                newTableData = $('<td></td>');
-                newTableData.text(venue['logoPath']);
+                newTableData = resolveLogo(venue['logoPath']);
                 newTableRow.append(newTableData);
 
                 newTableData = $('<td></td>');
@@ -98,6 +97,20 @@ function getLocation(locationId) {
     });
 
     return locationTableData;
+}
+
+function resolveLogo(logoPath) {
+    let logoTableData = $('<td></td>');
+    logoTableData.addClass('logoTableData');
+
+    let logoElement = $('<img>');
+    logoElement.addClass('img-fluid rounded mx-auto d-block');
+    logoElement.attr('src', logoPath);
+    logoElement.attr('alt', 'logo');
+
+    logoTableData.append(logoElement);
+    
+    return logoTableData;
 }
 
 function resolveWorkingHours(workingHours) {
