@@ -16,7 +16,7 @@ import dao.UserDAO;
 import dto.user.UserDTO;
 import validators.UserValidator;
 
-@Path("")
+@Path("authorization")
 public class AuthorizationService {
 	@Context
 	ServletContext ctx;

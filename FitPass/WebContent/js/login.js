@@ -9,13 +9,13 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: 'POST',
-			url: 'api/login',
+			url: 'api/authorization/login',
 			data: JSON.stringify({username: username, password: password}),
 			contentType: 'application/json',
 			success: function() {
 				alert('Korisnik je uspešno prijavljen!');
 				
-				window.location.href = 'http://localhost:8080/fit-pass/api/logged-user';
+				window.location.href = 'http://localhost:8080/fit-pass/api/authorization/logged-user';
 			},
 			error: function(message) {
 				alert(message.responseText);

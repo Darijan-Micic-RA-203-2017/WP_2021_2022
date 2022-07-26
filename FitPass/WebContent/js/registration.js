@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type: 'POST',
-				url: 'api/register-as-a-buyer',
+				url: 'api/authorization/register-as-a-buyer',
 				data: JSON.stringify({id: 0, logicallyDeleted: false, username: username, 
 					password: password, firstName: firstName, lastName: lastName, gender: gender, 
 					dateOfBirth: dateOfBirthWithAddedTimeSegment, role: 'BUYER', 
