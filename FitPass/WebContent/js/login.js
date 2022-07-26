@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	resolveAuthorizationButtons();
+
 	$('#usernameInput').focus();
 	
 	$('#loginForm').submit(function(event) {
@@ -23,3 +25,9 @@ $(document).ready(function() {
 		});
 	});
 });
+
+function resolveAuthorizationButtons() {
+	$('#registrationAsABuyerButton').click(function() {
+		window.location.href = 'registration.html';
+	});
+}

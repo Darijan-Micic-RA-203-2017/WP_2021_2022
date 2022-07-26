@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	resolveAuthorizationButtons();
+
 	$('#usernameInput').focus();
 	
 	$('#registrationForm').submit(function(event) {
@@ -40,6 +42,44 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function resolveAuthorizationButtons() {
+    $.ajax({
+        type: 'GET',
+        url: 'api/authorization/logged-user',
+        dataType: 'json',
+        success: function() {
+            $('#loginButton').hide();
+            
+            $('#logoutButton').show();
+            $('#logoutButton').removeAttr('hidden');
+			$('#logoutButton').click(function() {
+				$.ajax({
+					type: 'POST',
+					url: 'api/authorization/logout',
+					data: '',
+					success: function() {
+						alert('Korisnik je uspešno odjavljen!');
+						
+						window.location.href = 'index.html';
+					},
+					error: function(message) {
+						alert(message.responseText);
+					}
+				});
+			});
+        },
+        error: function() {
+            $('#loginButton').show();
+            $('#loginButton').removeAttr('hidden');
+			$('#loginButton').click(function() {
+				window.location.href = 'login.html';
+			});
+
+            $('#logoutButton').hide();
+        }
+    });
+}
 
 function isDataValid() {
 	let validationMessage = '';

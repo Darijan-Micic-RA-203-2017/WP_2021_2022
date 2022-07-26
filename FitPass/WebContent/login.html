@@ -5,13 +5,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
 	<title>Prijava korisnika</title>
 </head>
 <body class="text-bg-dark">
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">FitPass</a>
+			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" 
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Početna stranica</a>
+					</li>
+				</ul>
+				<button type="button" class="btn bg-dark text-white" id="registrationAsABuyerButton">Registruj se</button>
+			</div>
+		</div>
+	</nav>
 	<div class="container d-flex max-vw-50 min-vh-100">
 		<form role="form" id="loginForm">
 			<div class="form-group">
