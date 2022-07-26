@@ -1,4 +1,28 @@
 $(document).ready(function() {
+    $.ajax({
+        type: 'GET',
+        url: 'api/authorization/logged-user',
+        dataType: 'json',
+        success: function() {
+            $('#registrationAsABuyerButton').show();
+            $('#registrationAsABuyerButton').removeAttr('hidden');
+
+            $('#loginButton').hide();
+
+            $('#logoutButton').show();
+            $('#logoutButton').removeAttr('hidden');
+        },
+        error: function() {
+            $('#registrationAsABuyerButton').show();
+            $('#registrationAsABuyerButton').removeAttr('hidden');
+
+            $('#loginButton').show();
+            $('#loginButton').removeAttr('hidden');
+            
+            $('#logoutButton').hide();
+        }
+    });
+
     var venues = [];
     
     $.ajax({
