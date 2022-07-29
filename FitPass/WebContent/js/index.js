@@ -1,18 +1,18 @@
+const allVenues = [];
+const allVenueTypes = [];
+const allLocations = [];
+
 $(document).ready(function() {
     resolveAuthorizationButtons();
-    
-    var venues = [];
     
     $.ajax({
         type: 'GET',
         url: 'api/venues',
         dataType: 'json',
         success: function(retrievedVenues) {
-            for (let v of retrievedVenues) {
-                venues.push(v);
-            }
-            
-            for (let venue of venues) {
+            for (let venue of retrievedVenues) {
+                allVenues.push(venue);
+
                 let newTableRow = $('<tr></tr>');
                 
                 let newTableHeader = $('<th></th>');
@@ -24,13 +24,13 @@ $(document).ready(function() {
                 newTableData.text(venue['name']);
                 newTableRow.append(newTableData);
 
-                newTableData = getVenueType(venue['typeId']);
+                newTableData = resolveVenueType(venue['typeId']);
                 newTableRow.append(newTableData);
 
                 newTableData = resolveStatus(venue['status']);
                 newTableRow.append(newTableData);
                 
-                newTableData = getLocation(venue['locationId']);
+                newTableData = resolveLocation(venue['locationId']);
                 newTableRow.append(newTableData);
                 
                 newTableData = resolveLogo(venue['logoPath']);
@@ -94,14 +94,24 @@ function resolveAuthorizationButtons() {
     });
 }
 
-function getVenueType(typeId) {
+function resolveVenueType(typeId) {
     let venueTypeTableData = $('<td></td>');
 
+    for (let vType of allVenueTypes) {
+        if (vType['id'] == typeId) {
+            venueTypeTableData.text(vType['name']);
+            
+            return venueTypeTableData;
+        }
+    }
+    
     $.ajax({
+        async: false,
         type: 'GET',
         url: 'api/venue-types/' + typeId,
         dataType: 'json',
         success: function(retrievedVenueType) {
+            allVenueTypes.push(retrievedVenueType);
             venueTypeTableData.text(retrievedVenueType['name']);
         },
         error: function(message) {
@@ -124,14 +134,24 @@ function resolveStatus(status) {
     return statusTableData;
 }
 
-function getLocation(locationId) {
+function resolveLocation(locationId) {
     let locationTableData = $('<td></td>');
 
+    for (let l of allLocations) {
+        if (l['id'] == locationId) {
+            locationTableData.text(l['latitude'] + '\n\n' + l['longitude']);
+
+            return locationTableData;
+        }
+    }
+
     $.ajax({
+        async: false,
         type: 'GET',
         url: 'api/locations/' + locationId,
         dataType: 'json',
         success: function(retrievedLocation) {
+            allLocations.push(retrievedLocation);
             locationTableData.text(retrievedLocation['latitude'] + '\n\n' + 
                 retrievedLocation['longitude']);
         },
