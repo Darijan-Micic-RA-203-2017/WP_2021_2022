@@ -1,6 +1,7 @@
 const allVenues = [];
 const allVenueTypes = [];
 const allLocations = [];
+const allAddresses = [];
 
 $(document).ready(function() {
     resolveAuthorizationButtons();
@@ -21,6 +22,7 @@ $(document).ready(function() {
                 newTableRow.append(newTableHeader);
 
                 let newTableData = $('<td></td>');
+                newTableData.addClass('nameTableData');
                 newTableData.text(venue['name']);
                 newTableRow.append(newTableData);
 
@@ -37,6 +39,7 @@ $(document).ready(function() {
                 newTableRow.append(newTableData);
 
                 newTableData = $('<td></td>');
+                newTableData.addClass('averageGradeTableData');
                 newTableData.text(venue['averageGrade']);
                 newTableRow.append(newTableData);
 
@@ -96,6 +99,7 @@ function resolveAuthorizationButtons() {
 
 function resolveVenueType(typeId) {
     let venueTypeTableData = $('<td></td>');
+    venueTypeTableData.addClass('typeTableData');
 
     for (let vType of allVenueTypes) {
         if (vType['id'] == typeId) {
@@ -124,6 +128,7 @@ function resolveVenueType(typeId) {
 
 function resolveStatus(status) {
     let statusTableData = $('<td></td>');
+    statusTableData.addClass('statusTableData');
 
     if (status == 'WORKING') {
         statusTableData.text('Radi');
@@ -136,10 +141,11 @@ function resolveStatus(status) {
 
 function resolveLocation(locationId) {
     let locationTableData = $('<td></td>');
+    locationTableData.addClass('locationTableData');
 
     for (let l of allLocations) {
         if (l['id'] == locationId) {
-            locationTableData.text(l['latitude'] + '\n\n' + l['longitude']);
+            locationTableData.append(createLocationCard(l));
 
             return locationTableData;
         }
@@ -152,8 +158,7 @@ function resolveLocation(locationId) {
         dataType: 'json',
         success: function(retrievedLocation) {
             allLocations.push(retrievedLocation);
-            locationTableData.text(retrievedLocation['latitude'] + '\n\n' + 
-                retrievedLocation['longitude']);
+            locationTableData.append(createLocationCard(retrievedLocation));
         },
         error: function(message) {
             alert(message.responseText);
@@ -161,6 +166,58 @@ function resolveLocation(locationId) {
     });
 
     return locationTableData;
+}
+
+function createLocationCard(location) {
+    let locationCard = $('<div></div>');
+    locationCard.addClass('card text-center text-white bg-dark border-light');
+
+    for (let a of allAddresses) {
+        if (a['id'] == location['addressId']) {
+            locationCard.append(fillOutLocationCardBody(a, location));
+
+            return locationCard;
+        }
+    }
+    
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: 'api/addresses/' + location['addressId'],
+        dataType: 'json',
+        success: function(retrievedAddress) {
+            allAddresses.push(retrievedAddress);
+            locationCard.append(fillOutLocationCardBody(retrievedAddress, location));
+        },
+        error: function(message) {
+            alert(message.responseText);
+        }
+    });
+    
+    return locationCard;
+}
+
+function fillOutLocationCardBody(address, location) {
+    let locationCardBody = $('<div></div>');
+    locationCardBody.addClass('card-body');
+    
+    let locationCardTitle = $('<h5></h5>');
+    locationCardTitle.addClass('card-title');
+    locationCardTitle.text(address['street'] + ' ' + address['number']);
+    
+    let locationCardSubtitle = $('<h6></h6>');
+    locationCardSubtitle.addClass('card-subtitle mb-2');
+    locationCardSubtitle.text(address['populatedPlace'] + ' ' + address['postalCode']);
+    
+    let locationCardText = $('<p></p>');
+    locationCardText.addClass('card-text');
+    locationCardText.text(location['latitude'] + ' ' + location['longitude']);
+    
+    locationCardBody.append(locationCardTitle);
+    locationCardBody.append(locationCardSubtitle);
+    locationCardBody.append(locationCardText);
+    
+    return locationCardBody;
 }
 
 function resolveLogo(logoPath) {
@@ -179,6 +236,7 @@ function resolveLogo(logoPath) {
 
 function resolveWorkingHours(workingHours) {
     let workingHoursTableData = $('<td></td>');
+    workingHoursTableData.addClass('workingHoursTableData');
     workingHoursTableData.text(workingHours['openingHours'] + ' - ' + workingHours['closingHours']);
     
     return workingHoursTableData;

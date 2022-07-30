@@ -1,15 +1,52 @@
-div.container {
-    justify-content: center;
-    align-items: center;
-}
-
 #navbarSupportedContent > button.btn {
     margin-left: 10px;
 }
 
-td.logoTableData {
-    min-width: 7.5%;
-    max-width: 7.5%;
+div.container {
     justify-content: center;
     align-items: center;
+    min-width: 95vw;
+    max-width: 95vw;
+    min-height: 100%;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.nameTableData {
+    min-width: 25%;
+    max-width: 25%;
+}
+
+td.typeTableData {
+    min-width: 13%;
+    max-width: 13%;
+}
+
+td.statusTableData {
+    min-width: 7%;
+    max-width: 7%;
+}
+
+td.locationTableData {
+    min-width: 18%;
+    max-width: 18%;
+}
+
+td.logoTableData {
+    min-width: 8%;
+    max-width: 8%;
+}
+
+td.averageGradeTableData {
+    min-width: 12%;
+    max-width: 12%;
+}
+
+td.workingHoursTableData {
+    min-width: 12%;
+    max-width: 12%;
 }
