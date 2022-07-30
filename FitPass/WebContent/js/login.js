@@ -10,6 +10,7 @@ $(document).ready(function() {
 		let password = $('#passwordInput').val();
 		
 		$.ajax({
+			async: true,
 			type: 'POST',
 			url: 'api/authorization/login',
 			data: JSON.stringify({username: username, password: password}),

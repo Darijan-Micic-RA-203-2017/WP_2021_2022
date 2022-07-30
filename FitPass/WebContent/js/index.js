@@ -7,6 +7,7 @@ $(document).ready(function() {
     resolveAuthorizationButtons();
     
     $.ajax({
+        async: true,
         type: 'GET',
         url: 'api/venues',
         dataType: 'json',
@@ -61,6 +62,7 @@ function resolveAuthorizationButtons() {
     });
     
     $.ajax({
+        async: true,
         type: 'GET',
         url: 'api/authorization/logged-user',
         dataType: 'json',
@@ -71,6 +73,7 @@ function resolveAuthorizationButtons() {
             $('#logoutButton').removeAttr('hidden');
             $('#logoutButton').click(function() {
                 $.ajax({
+                    async: true,
                     type: 'POST',
                     url: 'api/authorization/logout',
                     data: '',

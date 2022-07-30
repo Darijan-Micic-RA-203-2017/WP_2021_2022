@@ -20,6 +20,7 @@ $(document).ready(function() {
 			}
 
 			$.ajax({
+				async: true,
 				type: 'POST',
 				url: 'api/authorization/register-as-a-buyer',
 				data: JSON.stringify({id: 0, logicallyDeleted: false, username: username, 
@@ -45,6 +46,7 @@ $(document).ready(function() {
 
 function resolveAuthorizationButtons() {
     $.ajax({
+		async: true,
         type: 'GET',
         url: 'api/authorization/logged-user',
         dataType: 'json',
@@ -55,6 +57,7 @@ function resolveAuthorizationButtons() {
             $('#logoutButton').removeAttr('hidden');
 			$('#logoutButton').click(function() {
 				$.ajax({
+					async: true,
 					type: 'POST',
 					url: 'api/authorization/logout',
 					data: '',
