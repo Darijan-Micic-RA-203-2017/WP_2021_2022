@@ -16,7 +16,7 @@ $(document).ready(function() {
 			data: JSON.stringify({username: username, password: password}),
 			contentType: 'application/json',
 			success: function() {
-				alert('Korisnik je uspešno prijavljen!');
+				alert('Uspešno ste se prijavili!');
 				
 				window.location.href = 'user-profile.html';
 			},

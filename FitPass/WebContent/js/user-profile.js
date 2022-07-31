@@ -21,7 +21,7 @@ $(document).ready(function() {
                 dateOfBirthWithoutAddedTimeSegment = originalLoggedUser['dateOfBirth'].substring(0, 10);
             }
             $('#dateOfBirthInput').val(dateOfBirthWithoutAddedTimeSegment);
-            $('#roleInput').val(originalLoggedUser['role']);
+            $('#roleSelect').val(originalLoggedUser['role']);
             
             resolveFormButtons();
         },
