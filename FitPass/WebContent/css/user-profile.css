@@ -1,0 +1,35 @@
+#navbarSupportedContent > button.btn {
+    margin-left: 10px;
+}
+
+div.container {
+    justify-content: center;
+    align-items: center;
+    max-width: 50vw;
+    min-height: 100%;
+}
+
+form {
+    min-width: 50%;
+}
+
+form > * {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.submitAndResetButtonsDiv {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+form > div.submitAndResetButtonsDiv > button:nth-child(1) {
+    width: 45%;
+    margin-right: 5%;
+}
+
+form > div.submitAndResetButtonsDiv > button:nth-child(2) {
+    width: 45%;
+    margin-left: 5%;
+}
