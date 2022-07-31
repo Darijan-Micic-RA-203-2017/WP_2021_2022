@@ -32,7 +32,7 @@ $(document).ready(function() {
 				success: function() {
 					alert('Uspešno ste registrovani kao kupac!');
 					
-					window.location.href = 'http://localhost:8080/fit-pass/login.html';
+					window.location.href = 'login.html';
 				},
 				error: function(message) {
 					alert(message.responseText);
