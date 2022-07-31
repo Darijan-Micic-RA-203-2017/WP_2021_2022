@@ -27,6 +27,10 @@ public class UserDAO {
 		return users;
 	}
 	
+	public UserDTO findById(long id) {
+		return users.get(id);
+	}
+	
 	public UserDTO findByUsername(String username) {
 		for (UserDTO u: users.values()) {
 			if (u.getUsername().equals(username)) {
