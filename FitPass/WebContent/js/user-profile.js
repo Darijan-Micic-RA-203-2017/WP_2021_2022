@@ -120,11 +120,11 @@ function resolveFormButtons() {
 }
 
 function addListenersToInputFields() {
-    $('input').not('[type="date"]').keyup(function() {
+    $('#userDataForm input[type="text"], #userDataForm input[type="password"]').keyup(function() {
         $('.submitAndResetButtonsDiv > button').prop('disabled', false);
     });
 
-    $('input[type="date"]').change(function() {
+    $('#userDataForm input').not('[type="text"]').not('[type="password"]').change(function() {
         $('.submitAndResetButtonsDiv > button').prop('disabled', false);
     });
 }
