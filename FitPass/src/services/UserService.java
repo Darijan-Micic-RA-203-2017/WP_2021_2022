@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -49,7 +51,8 @@ public class UserService {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUser(@Context HttpServletRequest request, @PathParam("id") String id) {
+	public Response getUser(@Context HttpServletRequest request, 
+			@PathParam("id") String id) {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
 		UserDTO user = userDAO.findById(Long.parseLong(id));
@@ -58,5 +61,18 @@ public class UserService {
 		}
 		
 		return Response.status(200).entity(user).build();
+	}
+	
+	@PUT
+	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateUser(@Context HttpServletRequest request, 
+			@PathParam("id") String id, UserDTO modifiedUser) {
+		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
+		
+		UserDTO updatedUser = userDAO.updateUser(Long.parseLong(id), modifiedUser);
+		
+		return Response.status(200).entity(updatedUser).build();
 	}
 }

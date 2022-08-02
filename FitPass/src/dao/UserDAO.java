@@ -71,6 +71,12 @@ public class UserDAO {
 		return newId;
 	}
 	
+	public UserDTO updateUser(long id, UserDTO modifiedUser) {
+		users.put(id, modifiedUser);
+		
+		return modifiedUser;
+	}
+	
 	private void loadUsers() {
 		BufferedReader reader = null;
 		try {
