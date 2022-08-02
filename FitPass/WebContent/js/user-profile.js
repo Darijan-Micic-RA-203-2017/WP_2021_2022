@@ -11,17 +11,7 @@ $(document).ready(function() {
         success: function(retrievedLoggedUser) {
             originalLoggedUser = retrievedLoggedUser;
 
-            $('#usernameInput').val(originalLoggedUser['username']);
-            $('#passwordInput').val(originalLoggedUser['password']);
-            $('#firstNameInput').val(originalLoggedUser['firstName']);
-            $('#lastNameInput').val(originalLoggedUser['lastName']);
-            $('input[name="genderInputRadioGroup"]').val([originalLoggedUser['gender']]);
-            let dateOfBirthWithoutAddedTimeSegment = '';
-            if (typeof originalLoggedUser['dateOfBirth'] === 'string') {
-                dateOfBirthWithoutAddedTimeSegment = originalLoggedUser['dateOfBirth'].substring(0, 10);
-            }
-            $('#dateOfBirthInput').val(dateOfBirthWithoutAddedTimeSegment);
-            $('#roleSelect').val(originalLoggedUser['role']);
+            fillOutUserDataForm();
             
             resolveFormButtons();
         },
@@ -56,7 +46,74 @@ function resolveAuthorizationButtons() {
     });
 }
 
-function resolveFormButtons() {}
+function fillOutUserDataForm() {
+    $('#usernameInput').val(originalLoggedUser['username']);
+    $('#passwordInput').val(originalLoggedUser['password']);
+    $('#firstNameInput').val(originalLoggedUser['firstName']);
+    $('#lastNameInput').val(originalLoggedUser['lastName']);
+    $('input[name="genderInputRadioGroup"]').val([originalLoggedUser['gender']]);
+    let dateOfBirthWithoutAddedTimeSegment = '';
+    if (typeof originalLoggedUser['dateOfBirth'] === 'string') {
+        dateOfBirthWithoutAddedTimeSegment = originalLoggedUser['dateOfBirth'].substring(0, 10);
+    }
+    $('#dateOfBirthInput').val(dateOfBirthWithoutAddedTimeSegment);
+    $('#roleSelect').val(originalLoggedUser['role']);
+}
+
+function resolveFormButtons() {
+    $('.submitAndResetButtonsDiv > button:nth-child(1)').click(function(event) {
+        event.preventDefault();
+        
+        let validationMessage = isDataValid();
+        if (validationMessage === '') {
+            let username = $('#usernameInput').val();
+            let password = $('#passwordInput').val();
+            let firstName = $('#firstNameInput').val();
+            let lastName = $('#lastNameInput').val();
+            let gender = $('input[name="genderInputRadioGroup"]').val();
+            let dateOfBirth = $('#dateOfBirthInput').val();
+            let dateOfBirthWithAddedTimeSegment = '';
+            if (typeof dateOfBirth === 'string') {
+                dateOfBirthWithAddedTimeSegment = dateOfBirth.concat('T00:00:00');
+            }
+            
+            $.ajax({
+                async: true,
+                type: 'PUT',
+                url: 'api/users/' + originalLoggedUser['id'],
+                data: JSON.stringify({id: originalLoggedUser['id'], logicallyDeleted: false, 
+                    username: username, password: password, firstName: firstName, lastName: lastName, 
+                    gender: gender, dateOfBirth: dateOfBirthWithAddedTimeSegment, 
+                    role: originalLoggedUser['role'], 
+                    trainingRecordsIds: originalLoggedUser['trainingRecordsIds'], 
+                    membershipId: originalLoggedUser['membershipId'], 
+                    ownedVenueId: originalLoggedUser['ownedVenueId'], 
+                    visitedVenuesIds: originalLoggedUser['visitedVenuesIds'], 
+                    earnedPoints: originalLoggedUser['earnedPoints'], 
+                    buyerTypeId: originalLoggedUser['buyerTypeId']
+                }),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(retrievedUser) {
+                    originalLoggedUser = retrievedUser;
+
+                    alert('Vaši lični podaci su uspešno izmenjeni!');
+                },
+                error: function(message) {
+                    alert(message.responseText);
+                }
+            });
+        } else {
+            alert(validationMessage);
+        }
+    });
+
+    $('.submitAndResetButtonsDiv > button:nth-child(2)').click(function(event) {
+        event.preventDefault();
+
+        fillOutUserDataForm();
+    });
+}
 
 function isDataValid() {
 	let validationMessage = '';
