@@ -57,7 +57,8 @@ public class UserService {
 		
 		UserDTO user = userDAO.findById(Long.parseLong(id));
 		if (user == null) {
-			return Response.status(404).entity("User with given id does not exist!").build();
+			return Response.status(404)
+					.entity("User with given id does not exist!").build();
 		}
 		
 		return Response.status(200).entity(user).build();
@@ -71,7 +72,17 @@ public class UserService {
 			@PathParam("id") String id, UserDTO modifiedUser) {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
+		UserDTO existingUserWithSameUsername = 
+				userDAO.findByUsername(modifiedUser.getUsername());
+		if (existingUserWithSameUsername != null) {
+			if (existingUserWithSameUsername.getId() != modifiedUser.getId()) {
+				return Response.status(400)
+						.entity("Given username is already taken!").build();
+			}
+		}
+		
 		UserDTO updatedUser = userDAO.updateUser(Long.parseLong(id), modifiedUser);
+		request.getSession().setAttribute("loggedUser", updatedUser);
 		
 		return Response.status(200).entity(updatedUser).build();
 	}
