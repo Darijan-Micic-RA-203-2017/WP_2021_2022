@@ -27,7 +27,8 @@ $(document).ready(function() {
 					password: password, firstName: firstName, lastName: lastName, gender: gender, 
 					dateOfBirth: dateOfBirthWithAddedTimeSegment, role: 'BUYER', 
 					trainingRecordsIds: [], membershipId: '', ownedVenueId: -1, visitedVenuesIds: [], 
-					earnedPoints: 0, buyerTypeId: 1}),
+					earnedPoints: 0, buyerTypeId: 1
+				}),
 				contentType: 'application/json',
 				success: function() {
 					alert('Uspešno ste registrovani kao kupac!');
