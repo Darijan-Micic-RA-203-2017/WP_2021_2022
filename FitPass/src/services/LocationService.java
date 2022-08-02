@@ -55,7 +55,8 @@ public class LocationService {
 		
 		LocationDTO location = locationDAO.findById(Long.parseLong(id));
 		if (location == null) {
-			return Response.status(404).entity("Location with given id does not exist!").build();
+			return Response.status(404)
+					.entity("Location with given id does not exist!").build();
 		}
 		
 		return Response.status(200).entity(location).build();

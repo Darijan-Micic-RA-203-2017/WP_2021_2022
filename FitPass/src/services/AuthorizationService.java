@@ -64,11 +64,13 @@ public class AuthorizationService {
 		UserDTO loggedUser = userDAO.findByUsernameAndPassword(user.getUsername(), 
 				user.getPassword());
 		if (loggedUser == null) {
-			return Response.status(400).entity("Invalid username and/or password!").build();
+			return Response.status(400)
+					.entity("Invalid username and/or password!").build();
 		}
 		
 		if (loggedUser.isLogicallyDeleted()) {
-			return Response.status(400).entity("User with entered credentials is deleted!").build();
+			return Response.status(400)
+					.entity("User with entered credentials is deleted!").build();
 		}
 		
 		request.getSession().setAttribute("loggedUser", loggedUser);

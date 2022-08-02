@@ -55,7 +55,8 @@ public class VenueTypeService {
 		
 		VenueType venueType = venueTypeDAO.findById(Long.parseLong(id));
 		if (venueType == null) {
-			return Response.status(404).entity("Venue type with given id does not exist!").build();
+			return Response.status(404)
+					.entity("Venue type with given id does not exist!").build();
 		}
 		
 		return Response.status(200).entity(venueType).build();

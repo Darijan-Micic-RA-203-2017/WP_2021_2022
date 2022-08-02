@@ -55,7 +55,8 @@ public class AddressService {
 		
 		Address address = addressDAO.findById(Long.parseLong(id));
 		if (address == null) {
-			return Response.status(404).entity("Address with given id does not exist!").build();
+			return Response.status(404)
+					.entity("Address with given id does not exist!").build();
 		}
 		
 		return Response.status(200).entity(address).build();
