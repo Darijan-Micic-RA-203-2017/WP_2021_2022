@@ -49,7 +49,8 @@ public class LocationService {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getLocation(@Context HttpServletRequest request, @PathParam("id") String id) {
+	public Response getLocation(@Context HttpServletRequest request, 
+			@PathParam("id") String id) {
 		LocationDAO locationDAO = (LocationDAO) ctx.getAttribute("locationDAO");
 		
 		LocationDTO location = locationDAO.findById(Long.parseLong(id));

@@ -35,7 +35,7 @@ public class AuthorizationService {
 	@Path("register-as-a-buyer")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response registerAsABuyer(UserDTO user, @Context HttpServletRequest request) {
+	public Response registerAsABuyer(@Context HttpServletRequest request, UserDTO user) {
 		if (!UserValidator.isNewlyRegisteredBuyerDTOValid(user)) {
 			return Response.status(400).entity("Invalid data!").build();
 		}
@@ -58,7 +58,7 @@ public class AuthorizationService {
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(UserDTO user, @Context HttpServletRequest request) {
+	public Response login(@Context HttpServletRequest request, UserDTO user) {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
 		UserDTO loggedUser = userDAO.findByUsernameAndPassword(user.getUsername(), 

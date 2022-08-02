@@ -49,7 +49,8 @@ public class VenueTypeService {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getVenueType(@Context HttpServletRequest request, @PathParam("id") String id) {
+	public Response getVenueType(@Context HttpServletRequest request, 
+			@PathParam("id") String id) {
 		VenueTypeDAO venueTypeDAO = (VenueTypeDAO) ctx.getAttribute("venueTypeDAO");
 		
 		VenueType venueType = venueTypeDAO.findById(Long.parseLong(id));

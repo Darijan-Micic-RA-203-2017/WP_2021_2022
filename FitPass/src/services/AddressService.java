@@ -49,7 +49,8 @@ public class AddressService {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAddress(@Context HttpServletRequest request, @PathParam("id") String id) {
+	public Response getAddress(@Context HttpServletRequest request, 
+			@PathParam("id") String id) {
 		AddressDAO addressDAO = (AddressDAO) ctx.getAttribute("addressDAO");
 		
 		Address address = addressDAO.findById(Long.parseLong(id));
