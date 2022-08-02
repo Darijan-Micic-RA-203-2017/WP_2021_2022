@@ -55,7 +55,7 @@ function resolveAuthorizationButtons() {
             $('#loginButton').hide();
             
             $('#logoutButton').show();
-            $('#logoutButton').removeAttr('hidden');
+            $('#logoutButton').prop('hidden', false);
 			$('#logoutButton').click(function() {
 				$.ajax({
 					async: true,
@@ -75,7 +75,7 @@ function resolveAuthorizationButtons() {
         },
         error: function() {
             $('#loginButton').show();
-            $('#loginButton').removeAttr('hidden');
+            $('#loginButton').prop('hidden', false);
 			$('#loginButton').click(function() {
 				window.location.href = 'login.html';
 			});
