@@ -14,6 +14,8 @@ $(document).ready(function() {
             fillOutUserDataForm();
             
             resolveFormButtons();
+
+            addListenersToInputFields();
         },
         error: function() {
             alert('Niste prijavljeni!');
@@ -96,6 +98,7 @@ function resolveFormButtons() {
                 dataType: 'json',
                 success: function(retrievedUser) {
                     originalLoggedUser = retrievedUser;
+                    $('.submitAndResetButtonsDiv > button').prop('disabled', true);
 
                     alert('Vaši lični podaci su uspešno izmenjeni!');
                 },
@@ -110,8 +113,19 @@ function resolveFormButtons() {
 
     $('.submitAndResetButtonsDiv > button:nth-child(2)').click(function(event) {
         event.preventDefault();
-
+        
         fillOutUserDataForm();
+        $('.submitAndResetButtonsDiv > button').prop('disabled', true);
+    });
+}
+
+function addListenersToInputFields() {
+    $('input').not('[type="date"]').keyup(function() {
+        $('.submitAndResetButtonsDiv > button').prop('disabled', false);
+    });
+
+    $('input[type="date"]').change(function() {
+        $('.submitAndResetButtonsDiv > button').prop('disabled', false);
     });
 }
 
