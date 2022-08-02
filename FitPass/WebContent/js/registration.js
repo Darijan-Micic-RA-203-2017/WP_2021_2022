@@ -12,7 +12,7 @@ $(document).ready(function() {
 			let password = $('#passwordInput').val();
 			let firstName = $('#firstNameInput').val();
 			let lastName = $('#lastNameInput').val();
-			let gender = $('input[name="genderInputRadioGroup"]').val();
+			let gender = $('input[name="genderInputRadioGroup"]:checked').val();
 			let dateOfBirth = $('#dateOfBirthInput').val();
 			let dateOfBirthWithAddedTimeSegment = '';
 			if (typeof dateOfBirth === 'string') {
