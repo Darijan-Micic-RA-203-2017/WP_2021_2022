@@ -52,6 +52,9 @@ function resolveAuthorizationButtons() {
         url: 'api/authorization/logged-user',
         dataType: 'json',
         success: function() {
+			$('.navbarContentForAuthenticatedUsers').show();
+			$('.navbarContentForAuthenticatedUsers').prop('hidden', false);
+
             $('#loginButton').hide();
             
             $('#logoutButton').show();
@@ -74,8 +77,10 @@ function resolveAuthorizationButtons() {
 			});
         },
         error: function() {
-            $('#loginButton').show();
-            $('#loginButton').prop('hidden', false);
+			$('.navbarContentForAuthenticatedUsers').hide();
+			
+			$('#loginButton').show();
+			$('#loginButton').prop('hidden', false);
 			$('#loginButton').click(function() {
 				window.location.href = 'login.html';
 			});
