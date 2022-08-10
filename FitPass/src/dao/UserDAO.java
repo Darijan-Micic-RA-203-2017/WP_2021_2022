@@ -74,6 +74,8 @@ public class UserDAO {
 	public UserDTO updateUser(long id, UserDTO modifiedUser) {
 		users.put(id, modifiedUser);
 		
+		saveUsers();
+		
 		return modifiedUser;
 	}
 	
