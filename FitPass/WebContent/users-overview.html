@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/users-overview.css">
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/users-overview.js"></script>
+	<title>Pregled svih korisnika</title>
+</head>
+<body class="text-bg-dark">
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">FitPass</a>
+			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" 
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Početna stranica</a>
+					</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="user-profile.html">Moj profil</a></li>
+                        </ul>
+                    </li>
+				</ul>
+				<button type="button" class="btn bg-dark text-white" id="registrationAsABuyerButton">Registruj se</button>
+                <button type="button" class="btn bg-dark text-white" id="logoutButton">Odjavi se</button>
+			</div>
+		</div>
+	</nav>
+    <div class="container d-flex flex-column">
+        <h1>Svi korisnici:</h1>
+        <table class="table table-dark table-bordered border-primary" id="usersTable">
+            <thead class="table-primary table-bordered border-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Korisnik</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+</html>

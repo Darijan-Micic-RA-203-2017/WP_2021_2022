@@ -1,0 +1,22 @@
+#navbarSupportedContent > button.btn {
+    margin-left: 10px;
+}
+
+div.container {
+    justify-content: center;
+    align-items: center;
+    min-width: 50vw;
+    max-width: 50vw;
+    min-height: 100%;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.userTableData {
+    min-width: 90%;
+    max-width: 90%;
+}

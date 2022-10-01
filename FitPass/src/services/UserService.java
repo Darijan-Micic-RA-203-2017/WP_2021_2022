@@ -15,6 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import beans.user.UserRole;
 import dao.UserDAO;
 import dto.user.UserDTO;
 
@@ -36,6 +37,16 @@ public class UserService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllNonDeletedUsers(@Context HttpServletRequest request) {
+		UserDTO loggedUser = (UserDTO) request.getSession().getAttribute("loggedUser");
+		if (loggedUser == null) {
+			return Response.status(401).entity("You are not logged in!").build();
+		}
+		
+		if (!loggedUser.getRole().equals(UserRole.ADMINISTRATOR.toString())) {
+			return Response.status(401).entity("You are not authorized to access " + 
+					"this functionality!").build();
+		}
+		
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
 		ArrayList<UserDTO> allUsers = new ArrayList<UserDTO>();
