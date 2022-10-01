@@ -1,4 +1,5 @@
 const allUsers = [];
+const allBuyerTypes = [];
 
 $(document).ready(function() {
     resolveAuthorizationButtons();
@@ -133,9 +134,37 @@ function printUserRole(user) {
             userRoleInSerbian = 'Trener';
             break;
         case 'BUYER':
-            userRoleInSerbian = 'Kupac, tip: ' + user['buyerTypeId'];
+            userRoleInSerbian = 'Kupac, tip: ' + resolveBuyerType(user['buyerTypeId']);
             break;
     }
 
     return userRoleInSerbian;
+}
+
+function resolveBuyerType(buyerTypeId) {
+    let buyerTypeName = '';
+
+    for (let bType of allBuyerTypes) {
+        if (bType['id'] == buyerTypeId) {
+            buyerTypeName = bType['name'];
+
+            return buyerTypeName;
+        }
+    }
+
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: 'api/buyer-types/' + buyerTypeId,
+        dataType: 'json',
+        success: function(retrievedBuyerType) {
+            allBuyerTypes.push(retrievedBuyerType);
+            buyerTypeName = retrievedBuyerType['name'];
+        },
+        error: function(message) {
+            alert(message.responseText);
+        }
+    });
+
+    return buyerTypeName;
 }
