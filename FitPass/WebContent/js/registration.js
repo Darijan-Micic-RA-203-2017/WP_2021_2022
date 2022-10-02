@@ -59,10 +59,8 @@ function resolveAuthorizationButtons() {
 				$('.navbarContentForAdministrators').show();
 				$('.navbarContentForAdministrators').prop('hidden', false);
 			}
-
-            $('#loginButton').hide();
-            
-            $('#logoutButton').show();
+			
+			$('#logoutButton').show();
             $('#logoutButton').prop('hidden', false);
 			$('#logoutButton').click(function() {
 				$.ajax({
@@ -82,16 +80,12 @@ function resolveAuthorizationButtons() {
 			});
         },
         error: function() {
-			$('.navbarContentForAuthenticatedUsers').hide();
-			
 			$('#loginButton').show();
 			$('#loginButton').prop('hidden', false);
 			$('#loginButton').click(function() {
 				window.location.href = 'login.html';
 			});
-
-            $('#logoutButton').hide();
-        }
+		}
     });
 }
 
