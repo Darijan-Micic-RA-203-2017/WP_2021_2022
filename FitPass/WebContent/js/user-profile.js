@@ -9,6 +9,14 @@ $(document).ready(function() {
         url: 'api/authorization/logged-user',
         dataType: 'json',
         success: function(retrievedLoggedUser) {
+            $('.navbarContentForAuthenticatedUsers').show();
+            $('.navbarContentForAuthenticatedUsers').prop('hidden', false);
+            
+            if (retrievedLoggedUser['role'] == 'ADMINISTRATOR') {
+                $('.navbarContentForAdministrators').show();
+                $('.navbarContentForAdministrators').prop('hidden', false);
+            }
+
             originalLoggedUser = retrievedLoggedUser;
 
             fillOutUserDataForm();

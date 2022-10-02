@@ -18,6 +18,9 @@ $(document).ready(function() {
                 return;
             }
 
+            $('.navbarContentForAdministrators').show();
+            $('.navbarContentForAdministrators').prop('hidden', false);
+
             fillOutUsersTable();
         },
         error: function() {

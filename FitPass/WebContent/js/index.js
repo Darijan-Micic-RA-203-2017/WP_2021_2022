@@ -66,9 +66,14 @@ function resolveAuthorizationButtons() {
         type: 'GET',
         url: 'api/authorization/logged-user',
         dataType: 'json',
-        success: function() {
+        success: function(retrievedLoggedUser) {
             $('.navbarContentForAuthenticatedUsers').show();
             $('.navbarContentForAuthenticatedUsers').prop('hidden', false);
+            
+            if (retrievedLoggedUser['role'] == 'ADMINISTRATOR') {
+                $('.navbarContentForAdministrators').show();
+                $('.navbarContentForAdministrators').prop('hidden', false);
+            }
             
             $('#loginButton').hide();
             
