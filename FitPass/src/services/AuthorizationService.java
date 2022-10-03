@@ -59,21 +59,27 @@ public class AuthorizationService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(@Context HttpServletRequest request, UserDTO user) {
+		UserDTO loggedUser = (UserDTO) request.getSession().getAttribute("loggedUser");
+		if (loggedUser != null) {
+			return Response.status(400).entity("You must log out of your current " + 
+					"session before you can log in again!").build();
+		}
+		
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
-		UserDTO loggedUser = userDAO.findByUsernameAndPassword(user.getUsername(), 
+		UserDTO userInStorage = userDAO.findByUsernameAndPassword(user.getUsername(), 
 				user.getPassword());
-		if (loggedUser == null) {
+		if (userInStorage == null) {
 			return Response.status(400)
 					.entity("Invalid username and/or password!").build();
 		}
 		
-		if (loggedUser.isLogicallyDeleted()) {
+		if (userInStorage.isLogicallyDeleted()) {
 			return Response.status(400)
 					.entity("User with entered credentials is deleted!").build();
 		}
 		
-		request.getSession().setAttribute("loggedUser", loggedUser);
+		request.getSession().setAttribute("loggedUser", userInStorage);
 		
 		return Response.status(200).build();
 	}

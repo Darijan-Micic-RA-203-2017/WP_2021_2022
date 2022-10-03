@@ -64,6 +64,16 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUser(@Context HttpServletRequest request, 
 			@PathParam("id") String id) {
+		UserDTO loggedUser = (UserDTO) request.getSession().getAttribute("loggedUser");
+		if (loggedUser == null) {
+			return Response.status(401).entity("You are not logged in!").build();
+		}
+		
+		if (!loggedUser.getRole().equals(UserRole.ADMINISTRATOR.toString())) {
+			return Response.status(401).entity("You are not authorized to access " + 
+					"this functionality!").build();
+		}
+		
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
 		UserDTO user = userDAO.findById(Long.parseLong(id));
@@ -81,6 +91,16 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateUser(@Context HttpServletRequest request, 
 			@PathParam("id") String id, UserDTO modifiedUser) {
+		UserDTO loggedUser = (UserDTO) request.getSession().getAttribute("loggedUser");
+		if (loggedUser == null) {
+			return Response.status(401).entity("You are not logged in!").build();
+		}
+		
+		if (loggedUser.getId() != Long.parseLong(id)) {
+			return Response.status(401).entity("You cannot update users other " + 
+					"than yourself!").build();
+		}
+		
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		
 		UserDTO existingUserWithSameUsername = 
