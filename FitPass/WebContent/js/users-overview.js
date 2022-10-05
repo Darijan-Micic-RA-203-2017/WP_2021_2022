@@ -107,7 +107,16 @@ function fillOutUserCardBody(user) {
     
     let userCardTitle = $('<h5></h5>');
     userCardTitle.addClass('card-title');
-    userCardTitle.text(user['username']);
+    let usernameLink = $('<a></a>');
+    usernameLink.attr('href', 'api/users/' + user['id']);
+    usernameLink.text(user['username']);
+    usernameLink.click(function(event) {
+        event.preventDefault();
+
+        localStorage.setItem('clickedUserProfileURL', usernameLink.attr('href'));
+        window.location.href = 'user-profile.html';
+    });
+    userCardTitle.append(usernameLink);
     
     let userCardSubtitle = $('<h6></h6>');
     userCardSubtitle.addClass('card-subtitle mb-2');
