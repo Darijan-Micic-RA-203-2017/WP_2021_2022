@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/user-profile.css">
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/user-profile.js"></script>
+	<title>Profil korisnika</title>
+</head>
+<body class="text-bg-dark">
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">FitPass</a>
+			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" 
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Početna stranica</a>
+					</li>
+                    <li class="nav-item dropdown navbarContentForAuthenticatedUsers" hidden>
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="#">Moj profil</a></li>
+                            <li class="navbarContentForAdministrators" hidden>
+                                <a class="dropdown-item" href="users-overview.html">Pregled svih korisnika</a>
+                            </li>
+                        </ul>
+                    </li>
+				</ul>
+				<button type="button" class="btn bg-dark text-white" id="registrationAsABuyerButton">Registruj se</button>
+                <button type="button" class="btn bg-dark text-white" id="logoutButton">Odjavi se</button>
+			</div>
+		</div>
+	</nav>
+	<div class="container d-flex">
+        <form role="form" id="userDataForm">
+            <div class="form-group">
+                <label for="usernameInput">Korisničko ime:</label>
+                <input type="text" class="form-control" id="usernameInput" disabled>
+            </div>
+            <div class="form-group">
+                <label for="firstNameInput">Ime:</label>
+                <input type="text" class="form-control" id="firstNameInput" disabled>
+            </div>
+            <div class="form-group">
+                <label for="lastNameInput">Prezime:</label>
+                <input type="text" class="form-control" id="lastNameInput" disabled>
+            </div>
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="genderInputRadioGroup" 
+                        id="maleGenderInput" value="MALE" disabled>
+                    <label class="form-check-label" for="maleGenderInput">Muški pol</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="genderInputRadioGroup" 
+                        id="femaleGenderInput" value="FEMALE" disabled>
+                    <label class="form-check-label" for="femaleGenderInput">Ženski pol</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirthInput">Datum rođenja:</label>
+                <input type="date" class="form-control" id="dateOfBirthInput" disabled>
+            </div>
+            <div class="form-group">
+                <label for="roleInput">Uloga:</label>
+                <select class="form-select" id="roleSelect" disabled>
+                    <option value="ADMINISTRATOR">Administrator</option>
+                    <option value="VENUE_MANAGER">Menadžer objekta</option>
+                    <option value="TRAINER">Trener</option>
+                    <option value="BUYER">Kupac</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

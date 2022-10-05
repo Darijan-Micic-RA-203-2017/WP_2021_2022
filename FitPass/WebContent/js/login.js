@@ -18,7 +18,7 @@ $(document).ready(function() {
 			success: function() {
 				alert('Uspešno ste se prijavili!');
 				
-				window.location.href = 'user-profile.html';
+				window.location.href = 'my-profile.html';
 			},
 			error: function(message) {
 				alert(message.responseText);
